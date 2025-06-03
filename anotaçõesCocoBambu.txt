@@ -1,0 +1,9 @@
+ANOTAÇÕES PARA COCO BAMBU
+
+LOGIN:
+	-Para cadastrar não tem a opção de utilizar o google
+	-Para realizar login a função de utilizar conta do google não funciona (nenhuma das opções: Apple, Facebook e Google)
+	-No momento de fechar pedido ele pede para acrescentar CPF e telefone, mas não atualiza no perfil. Porem puxa do
+perfil quando preenchido
+
+	

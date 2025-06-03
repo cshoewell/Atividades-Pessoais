@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-06-03T16:01:02.207885" rpa="false" schemaversion="5">
+<suite id="s1" name="cocoBambu" source="c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\tests\cocoBambu.robot">
+<test id="s1-t1" name="Cenario 03: Restaurantes" line="31">
+<kw name="Listar restaurantes disponiveis por localizaçao" owner="cocoBambu">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-06-03T16:01:03.088024" level="INFO">Creating Session using : alias=cocobambuapi, url=https://app-hom.cocobambu.com/delivery, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>cocobambuapi</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-06-03T16:01:03.087654" elapsed="0.004559"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-06-03T16:01:03.094997" level="INFO">${params} = {'latitude': '-23.550520', 'longitude': '-46.633308'}</msg>
+<var>${params}</var>
+<arg>latitude=-23.550520</arg>
+<arg>longitude=-46.633308</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-06-03T16:01:03.093181" elapsed="0.002223"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-06-03T16:01:04.105104" level="INFO">GET Request : url=https://app-hom.cocobambu.com/delivery/restaurants?latitude=-23.550520&amp;longitude=-46.633308 
+ path_url=/delivery/restaurants?latitude=-23.550520&amp;longitude=-46.633308 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2025-06-03T16:01:04.105444" level="INFO">GET Response : url=https://app-hom.cocobambu.com/delivery/restaurants?latitude=-23.550520&amp;longitude=-46.633308 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 03 Jun 2025 19:01:04 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Server': 'cloudflare', 'Last-Modified': 'Tue, 03 Jun 2025 14:20:37 GMT', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'X-Served-By': 'app-hom.cocobambu.com', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=R5vQte85uiwdhiv4dq8OLdimjQ28mMl7wXYQd2%2FFvGKhG9yrNmnjHUCm%2F1D0qpCLTwwOqfo0RFmm4UUq%2FMB0pCCDD6I4gxp8le1nwX7gG%2B6H7NkmjRJXd6hHiFNTPuwezg%3D%3D"}]}', 'Cf-Cache-Status': 'DYNAMIC', 'Vary': 'accept-encoding', 'Content-Encoding': 'gzip', 'CF-RAY': '94a16fda3f51e2b5-GIG', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-br" data-critters-container&gt;
+
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="apple-mobile-web-app-capable" content="no"&gt;
+
+    &lt;title&gt;Coco Bambu Restaurantes&lt;/title&gt;
+
+    &lt;base href="/"&gt;
+
+    &lt;meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;
+    &lt;meta name="format-detection" content="telephone=no"&gt;
+    &lt;meta name="msapplication-tap-highlight" content="no"&gt;
+
+    &lt;link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico"&gt;
+
+    &lt;!-- add to homescreen for ios --&gt;
+    &lt;!-- &lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
+    &lt;meta name="apple-mobile-web-app-status-bar-style" content="black" /&gt; --&gt;
+    &lt;link rel="manifest" href="manifest.webmanifest"&gt;
+&lt;style&gt;:root{--ion-color-primary:#46190f;--ion-color-primary-rgb:70, 25, 15;--ion-color-primary-contrast:#ffffff;--ion-color-primary-contrast-rgb:255, 255, 255;--ion-color-primary-shade:#3f170d;--ion-color-primary-tint:#704137;--ion-color-primary-gray:#888888;--ion-color-secondary:#c6aa6a;--ion-color-secondary-rgb:198, 170, 106;--ion-color-secondary-contrast:#ffffff;--ion-color-secondary-contrast-rgb:255, 255, 255;--ion-color-secondary-shade:#c6aa6a;--ion-color-secondary-tint:#c6aa6a;--ion-color-tertiary:#3b5998;--ion-color-tertiary-rgb:112, 68, 255;--ion-color-tertiary-contrast:#ffffff;--ion-color-tertiary-contrast-rgb:255, 255, 255;--ion-color-tertiary-shade:#633ce0;--ion-color-tertiary-tint:#7e57ff;--ion-color-success:#10dc60;--ion-color-success-rgb:16, 220, 96;--ion-color-success-contrast:#ffffff;--ion-color-success-contrast-rgb:255, 255, 255;--ion-color-success-shade:#0ec254;--ion-color-success-tint:#28e070;--ion-color-warning:#ffce00;--ion-color-warning-rgb:255, 206, 0;--ion-color-warning-contrast:#ffffff;--ion-color-warning-contrast-rgb:255, 255, 255;--ion-color-warning-shade:#e0b500;--ion-color-warning-tint:#ffd31a;--ion-color-danger:#f04141;--ion-color-danger-rgb:245, 61, 61;--ion-color-danger-contrast:#ffffff;--ion-color-danger-contrast-rgb:255, 255, 255;--ion-color-danger-shade:#d33939;--ion-color-danger-tint:#f25454;--ion-color-dark:#222428;--ion-color-dark-rgb:34, 34, 34;--ion-color-dark-contrast:#ffffff;--ion-color-dark-contrast-rgb:255, 255, 255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e;--ion-color-medium:#989aa2;--ion-color-medium-rgb:152, 154, 162;--ion-color-medium-contrast:#ffffff;--ion-color-medium-contrast-rgb:255, 255, 255;--ion-color-medium-shade:#86888f;--ion-color-medium-tint:#a2a4ab;--ion-color-light:#ffffff;--ion-color-light-rgb:244, 244, 244;--ion-color-light-contrast:#000000;--ion-color-light-contrast-rgb:0, 0, 0;--ion-color-light-shade:#d7d8da;--ion-color-light-tint:#f5f6f9;--ion-font:.83em;--ion-font-medium:.95em;--ion-font-small:.75em;--ion-font-ios:.8rem;--ion-font-medium-ios:.8rem;--ion-font-large-ios:1.2rem;--ion-font-small-ios:.8rem}html{--ion-default-dynamic-font:-apple-system-body;--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:env(safe-area-inset-top);--ion-safe-area-bottom:env(safe-area-inset-bottom);--ion-safe-area-left:env(safe-area-inset-left);--ion-safe-area-right:env(safe-area-inset-right)}}*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}html{width:100%;height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}html:not(.hydrated) body{display:none}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;margin:0;padding:0;position:fixed;width:100%;max-width:100%;height:100%;max-height:100%;transform:translateZ(0);text-rendering:optimizeLegibility;overflow:hidden;touch-action:manipulation;-webkit-user-drag:none;-ms-content-zooming:none;word-wrap:break-word;overscroll-behavior-y:none;-webkit-text-size-adjust:none;text-size-adjust:none}html{font-family:var(--ion-font-family)}@supports (-webkit-touch-callout: none){html{font:var(--ion-dynamic-font, 16px var(--ion-font-family))}}*{margin:0;padding:0;box-sizing:border-box}body{text-rendering:optimizeLegibility!important;-webkit-font-smoothing:antialiased!important}@charset "UTF-8";:root{--animate-duration:1s;--animate-delay:1s;--animate-repeat:1}&lt;/style&gt;&lt;link rel="stylesheet" href="styles.be8ae6ba477828a8.css" media="print" onload="this.media='all'"&gt;&lt;noscript&gt;&lt;link rel="stylesheet" href="styles.be8ae6ba477828a8.css"&gt;&lt;/noscript&gt;&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;app-root&gt;&lt;/app-root&gt;
+
+    &lt;script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/pt_BR/appleid.auth.js"&gt;&lt;/script&gt;
+    &lt;noscript&gt;Please enable JavaScript to continue using this
+        application.&lt;/noscript&gt;
+&lt;script src="runtime.a5ae946109d75c23.js" type="module"&gt;&lt;/script&gt;&lt;script src="polyfills.b0781613ccbadd07.js" type="module"&gt;&lt;/script&gt;&lt;script src="scripts.0606e8c095f9d6b8.js" defer&gt;&lt;/script&gt;&lt;script src="main.330274f251123536.js" type="module"&gt;&lt;/script&gt;&lt;/body&gt;
+
+&lt;/html&gt; 
+ </msg>
+<msg time="2025-06-03T16:01:04.105927" level="INFO">C:\Program Files\Python313\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'app-hom.cocobambu.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-06-03T16:01:04.108681" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>cocobambuapi</arg>
+<arg>/restaurants</arg>
+<arg>params=${params}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-06-03T16:01:03.096211" elapsed="1.012931"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<msg time="2025-06-03T16:01:04.110373" level="FAIL">InvalidResponse: 200</msg>
+<var>${json_response}</var>
+<arg>${response}</arg>
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="FAIL" start="2025-06-03T16:01:04.109650" elapsed="0.008131">InvalidResponse: 200</status>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<arg>${json_response}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.118222" elapsed="0.000213"/>
+</kw>
+<if>
+<branch type="IF" condition="len($json_response) &gt; 0">
+<for flavor="IN">
+<iter>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${restaurant}</arg>
+<arg>id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.119732" elapsed="0.000231"/>
+</kw>
+<kw name="Dictionary Should Contain Key" owner="Collections">
+<arg>${restaurant}</arg>
+<arg>name</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.120311" elapsed="0.000191"/>
+</kw>
+<kw name="Should Be String" owner="String">
+<arg>${restaurant}[name]</arg>
+<doc>Fails if the given ``item`` is not a string.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.120824" elapsed="0.000197"/>
+</kw>
+<var name="${restaurant}"/>
+<status status="NOT RUN" start="2025-06-03T16:01:04.119382" elapsed="0.001823"/>
+</iter>
+<var>${restaurant}</var>
+<value>@{json_response}</value>
+<status status="NOT RUN" start="2025-06-03T16:01:04.119060" elapsed="0.002344"/>
+</for>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>\${RESTAURANT_ID}</arg>
+<arg>${json_response[0]['id']} # Salva o ID do primeiro para testes subsequentes</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.121809" elapsed="0.000237"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>ID do Restaurante para próximos testes: ${RESTAURANT_ID}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-06-03T16:01:04.122394" elapsed="0.000204"/>
+</kw>
+<status status="NOT RUN" start="2025-06-03T16:01:04.118766" elapsed="0.004019"/>
+</branch>
+<status status="NOT RUN" start="2025-06-03T16:01:04.118702" elapsed="0.004292"/>
+</if>
+<tag>Listagem</tag>
+<tag>Restaurantes</tag>
+<tag>Sucesso</tag>
+<status status="FAIL" start="2025-06-03T16:01:03.086579" elapsed="1.036644">InvalidResponse: 200</status>
+</kw>
+<kw name="Obter detalhes de um restaurante especifico" owner="cocoBambu">
+<tag>Detalhes</tag>
+<tag>Restaurantes</tag>
+<tag>Sucesso</tag>
+<status status="NOT RUN" start="2025-06-03T16:01:04.130444" elapsed="0.000251"/>
+</kw>
+<status status="FAIL" start="2025-06-03T16:01:03.085061" elapsed="1.046973">InvalidResponse: 200</status>
+</test>
+<doc>Testes API Cocobambu</doc>
+<status status="FAIL" start="2025-06-03T16:01:02.215316" elapsed="1.921798"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="cocoBambu" id="s1" pass="0" fail="1" skip="0">cocoBambu</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-06-03T16:01:02.281924" level="WARN">Error in file 'c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\resources\cocoBambu.resource' on line 36: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-03T16:01:02.282925" level="WARN">Error in file 'c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\resources\cocoBambu.resource' on line 53: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-03T16:01:02.284714" level="WARN">Error in file 'c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\resources\cocoBambu.resource' on line 57: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-03T16:01:02.285569" level="WARN">Error in file 'c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\resources\cocoBambu.resource' on line 70: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-06-03T16:01:02.286528" level="WARN">Error in file 'c:\Users\hoewe\Documents\Desafio QA Coco Bambu\CocoBambu Robot\resources\cocoBambu.resource' on line 95: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
