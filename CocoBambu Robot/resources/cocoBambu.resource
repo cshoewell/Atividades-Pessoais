@@ -25,9 +25,11 @@ ${DELETE_CART_URI}       /carts/${CART_ID_TO_DELETE} # URI para deletar o carrin
 
 ***Keywords***
 Criar sessao na API
+    # Cria uma sessão para a API com o URL base
     Create Session    cocobambuapi    ${BASE_URL}
 
 Verificar status code e json valido
+    # Verifica se o status code é 200 e se a resposta é um JSON válido
     [Arguments]    ${response}    ${expected_status_code}
     Status Should Be    200    ${response}    ${expected_status_code}
     Should Not Be Empty    ${response.content}    msg=Resposta da API está vazia.
@@ -36,6 +38,7 @@ Verificar status code e json valido
     [Return]    ${json_response}
 
 Salvar token de autenticaçao
+    # Extrai o token de autenticação da resposta JSON e salva como variável de suíte
     [Arguments]    ${json_response}
     ${access_token} =    Get Variable Value    ${json_response}    $.access_token
     Should Not Be Empty    ${access_token[0]}    msg=Access token não encontrado na resposta.
@@ -49,15 +52,18 @@ Salvar token de autenticaçao
     # END
 
 Construir cabeçalho de autenticaçao
+    # Cria um cabeçalho de autenticação com o token e o tipo de conteúdo JSON
     ${auth_header} =    Create Dictionary    Authorization=Bearer ${AUTH_TOKEN}    Content-Type=${CONTENT_TYPE_JSON}
     [Return]    ${auth_header}
 
 Construir cabeçalho content-type json
+    # Cria um cabeçalho com o tipo de conteúdo JSON
     ${header} =    Create Dictionary    Content-Type=${CONTENT_TYPE_JSON}
     [Return]    ${header}
 
 
 Logar usuario com sucesso
+    # Realiza o login do usuário e retorna o JSON de resposta
     [Tags]    Autenticacao    Login    Sucesso
     &{payload}    Create Dictionary
     ...           email=usuario@example.com
@@ -71,6 +77,7 @@ Logar usuario com sucesso
     
 
 Recuperar senha de usuario com sucesso
+    # Envia um e-mail para recuperar a senha do usuário
     [Tags]    Autenticacao    RecuperarSenha    Sucesso
     &{payload}=    Create Dictionary    email=usuario_esquecido_robot@example.com
     ${headers}=    Create Dictionary    Content-Type=${CONTENT_TYPE_JSON}
@@ -84,7 +91,8 @@ Recuperar senha de usuario com sucesso
         Should Contain    ${message_list[0]}    instruções foram enviadas
     END
 
-Cadastrar novo usuario com sucesso    
+Cadastrar novo usuario com sucesso
+    # Realiza o cadastro de um novo usuário e retorna o JSON de resposta    
     [Tags]    Autenticacao    Cadastro    Sucesso
     &{payload}=    Create Dictionary
     ...    nome=Novo Usuário Teste Robot
@@ -171,6 +179,7 @@ Adicionar novo endereço ao perfil
     Should Be Equal As Strings    ${street_list[0]}    Rua Nova Robot Teste
 
 Deletar usuario
+    #Deleta o usuário autenticado.
     [Tags]    Perfil    DeletarUsuario    Sucesso
     Skip If    '${AUTH_TOKEN}' == '${EMPTY}'    Requer autenticação.
     ${headers}=    ${auth_header}
@@ -184,6 +193,7 @@ Deletar usuario
     END
 
 Atualizar endereço do usuario
+    #Atualiza um endereço existente do usuário.
     [Tags]    Perfil    AtualizarEndereco    Sucesso
     Skip If    '${AUTH_TOKEN}' == '${EMPTY}'    Requer autenticação.
     Skip If    '${ADDRESS_ID}' == 'defaultAddressId'    Requer um ID de endereço válido.
@@ -206,6 +216,7 @@ Atualizar endereço do usuario
     Should Be Equal As Strings   ${street_list[0]}   Rua Atualizada Robot Teste
 
 Deletar endereço do usuario
+    #Deleta um endereço específico do usuário.
     [Tags]    Perfil    DeletarEndereco    Sucesso
     Skip If    '${AUTH_TOKEN}' == '${EMPTY}'    Requer autenticação.
     Skip If    '${ADDRESS_ID}' == 'defaultAddressId'    Requer um ID de endereço válido.
@@ -222,6 +233,7 @@ Deletar endereço do usuario
 
 # Suíte: Restaurantes/Lojas
 Listar restaurantes disponiveis por localizaçao
+    # Obtém uma lista de restaurantes disponíveis com base na localização fornecida.
     Create Session    cocobambuapi    ${BASE_URL}   
     [Tags]    Restaurantes    Listagem    Sucesso    
     ${params}=    Create Dictionary    latitude=-23.550520    longitude=-46.633308
@@ -243,6 +255,7 @@ Listar restaurantes disponiveis por localizaçao
     END
 
 Obter detalhes de um restaurante especifico
+    # Obtém os detalhes de um restaurante específico usando o ID.
     Create Session    cocobambuapi    ${BASE_URL}
     [Tags]    Restaurantes    Detalhes    Sucesso
     Skip If    '${RESTAURANT_ID}' == 'defaultRestaurantId'    É necessário um ID de restaurante válido. Execute 'Listar Restaurantes Disponíveis' primeiro.
@@ -301,6 +314,7 @@ Obter detalhes de um item do cardapio
 
 # Suíte: Carrinho de Compras
 Adicionar item ao carrinho
+    # Adiciona um item ao carrinho de compras do usuário autenticado.
     Create Session    dummyapi    ${BASE_URL_DUMMY}
 
     &{headers}=       Create Dictionary    Content-Type=application/json
@@ -332,6 +346,7 @@ Adicionar item ao carrinho
 
 
 Ver carrinho de compras
+    # Obtém os detalhes do carrinho de compras do usuário autenticado.
     [Tags]    Carrinho    VerCarrinho    Sucesso
     Skip If    '${AUTH_TOKEN}' == '${EMPTY}'    Requer autenticação.
     ${headers}=    ${auth_header}
@@ -345,7 +360,7 @@ Ver carrinho de compras
     Should Be Equal As Strings    ${total_price_list[0]}    ${json_response}    $.total_price
 
 Atualizar carrinho com merge de produtos
-    # Criar uma sessão para a API
+    # Atualiza o carrinho de compras com um novo produto, mantendo os existentes.
     Create Session    dummyapi    ${BASE_URL_DUMMY}
 
     &{headers}=       Create Dictionary    Content-Type=application/json
@@ -378,6 +393,7 @@ Atualizar carrinho com merge de produtos
     Log To Console    Produtos no carrinho atualizado: ${updated_products_list}
 
 Deletar carrinho
+    # Deleta o carrinho de compras do usuário autenticado.
     Create Session    dummyapi    ${BASE_URL_DUMMY}
 
     ${response}=      DELETE On Session
